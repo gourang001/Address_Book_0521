@@ -50,7 +50,7 @@ class AddressBook {
         const email = readlineSync.question("Email: ");
         const contact = { firstName, lastName, address, city, state, zip, phoneNumber, email };
         this.contacts.push(contact);
-        console.log("Contact added successfully");
+        console.log("Contact added successfully!");
     }
     displayContacts() {
         if (this.contacts.length === 0) {
@@ -64,6 +64,29 @@ class AddressBook {
             }
         }
     }
+    menu() {
+        while (true) {
+            console.log("\nAddress Book Menu:");
+            console.log("1. Add Contact");
+            console.log("2. Display Contacts");
+            console.log("3. Exit");
+            const choice = readlineSync.question("Enter your choice: ");
+            switch (choice) {
+                case "1":
+                    this.addContact();
+                    break;
+                case "2":
+                    this.displayContacts();
+                    break;
+                case "3":
+                    console.log("Exiting...");
+                    //   process.exit(0);
+                    return;
+                default:
+                    console.log("Invalid choice.");
+            }
+        }
+    }
 }
 const addressBook = new AddressBook();
-addressBook.displayContacts();
+addressBook.menu();
